@@ -8,7 +8,7 @@ interface ExecutionResult {
     status: 'completed' | 'queued' | 'processing' | 'failed';
 }
 
-export const pythonSubmission=async(sourceCode:string,stdin:string):Promise<ExecutionResult> =>{
+export const execPythonCode=async(sourceCode:string,stdin:string):Promise<ExecutionResult> =>{
     const tempFilePathCode: string = path.join(__dirname, 'code.py');
 
     let result: ExecutionResult = {
@@ -60,13 +60,13 @@ export const pythonSubmission=async(sourceCode:string,stdin:string):Promise<Exec
     return result;   
 }
 
-const pythonCode = `
-srt=input()
-print(srt)
-`;
+// const pythonCode = `
+// srt=int(input())
+// print(srt)
+// `;
 
-const stdin = 'Hello from stdin!';
+// const stdin = 'Hello from stdin!';
 
-pythonSubmission(pythonCode,stdin).then((result)=>{
-    console.log(result)
-})
+// execPythonCode(pythonCode,stdin).then((result)=>{
+//     console.log(result)
+// })
