@@ -8,4 +8,5 @@ const Submission_1 = require("../controllers/Submission");
 const router = express_1.default.Router();
 router.post("/submitCode", Submission_1.makeSubmissions);
 router.get("/getSubmission", Submission_1.getSubmission);
+router.get("/getAllSubmissions", Submission_1.getAllSubmission);
 exports.default = router;

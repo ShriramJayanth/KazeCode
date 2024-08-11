@@ -10,7 +10,7 @@ app.use(express.json());
 
 app.use(cors({
     credentials:true,
-    origin:true,
+    origin:"*",
   }));
 
 app.use("/submit",SubmissionRoutes)
