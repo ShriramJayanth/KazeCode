@@ -10,7 +10,3 @@ export const makeSubmissions=(req:Request,res:Response)=>{
 export const getSubmission=(req:Request,res:Response)=>{
     res.send(req.body);
 }
-
-export const getAllSubmission=(req:Request,res:Response)=>{
-    res.send(prisma.submission.findMany());
-}

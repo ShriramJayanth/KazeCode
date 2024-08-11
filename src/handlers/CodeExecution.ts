@@ -105,47 +105,46 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 };
 
 
-const pythonCode = `
-message=input()
-while(1):
-  print(message)
-`;
+// const pythonCode = `
+// message=input()
+// print(message)
+// `;
 
-const javaCode = `
-import java.util.Scanner;
+// const javaCode = `
+// import java.util.Scanner;
 
-public class Program {
-    public static void main(String[] args) {
-        Scanner scanner = new Scanner(System.in);
-        String message = scanner.nextLine();
-        System.out.println(message);
-        scanner.close();
-    }
-}
-`;
+// public class Program {
+//     public static void main(String[] args) {
+//         Scanner scanner = new Scanner(System.in);
+//         String message = scanner.nextLine();
+//         System.out.println(message);
+//         scanner.close();
+//     }
+// }
+// `;
 
-const cppCode = `
-#include <bits/stdc++.h>
-using namespace std;
+// const cppCode = `
+// #include <bits/stdc++.h>
+// using namespace std;
 
-int main() {
-    string message;
-    getline(cin,message);
-    cout<<message<<endl;
-    return 0;
-}
-`;
+// int main() {
+//     string message;
+//     getline(cin,message);
+//     cout<<message<<endl;
+//     return 0;
+// }
+// `;
 
-const stdin = 'Kaizoku ou ni orewa naru"';
+// const stdin = 'Kaizoku ou ni orewa naru"';
 
-execCode(1, pythonCode, stdin,5000).then((result) => {
-    console.log('Python result:', result);
-});
+// execCode(1, pythonCode, stdin,5000).then((result) => {
+//     console.log('Python result:', result);
+// });
 
-// execCode(2, javaCode, stdin).then((result) => {
+// execCode(2, javaCode, stdin,5000).then((result) => {
 //     console.log('Java result:', result);
 // });
 
-// execCode(3, cppCode, stdin).then((result) => {
+// execCode(3, cppCode, stdin,5000).then((result) => {
 //     console.log('C++ result:', result);
 // });

@@ -12,21 +12,5 @@ model User {
   username    String   @unique
   password    String
   createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
-  submissions Submission[]
-}
-
-model Submission {
-  id           String   @id @default(uuid())
-  userId       String
-  user         User     @relation(fields: [userId], references: [id])
-  code         String
-  language     String
-  status       String   @default("queued")
-  result       String?  // Output of the code execution
-  error        String?  // Error message if execution fails
-  queuePosition Int      @default(0) // Position in the execution queue
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
 }
 
