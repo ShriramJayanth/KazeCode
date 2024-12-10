@@ -106,8 +106,9 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 
 
 // const pythonCode = `
-// message=input()
-// print(message)
+// for i in range(1000000):
+//     for j in range(100000000):
+//         print(i)
 // `;
 
 // const javaCode = `

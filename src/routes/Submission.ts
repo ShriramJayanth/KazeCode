@@ -4,6 +4,6 @@ import { makeSubmissions,getSubmission} from "../handlers/Submission"
 const router=express.Router();
 
 router.post("/submitCode",makeSubmissions)
-router.get("/getSubmission",getSubmission)
+router.post("/getSubmission",getSubmission)
 
 export default router

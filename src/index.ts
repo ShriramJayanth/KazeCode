@@ -2,6 +2,7 @@ import express,{ Express,Request,Response } from "express";
 import dotenv from "dotenv";
 import SubmissionRoutes from "./routes/Submission"
 import cors from "cors";
+import "./handlers/queueProcess";
 
 dotenv.config();
 
