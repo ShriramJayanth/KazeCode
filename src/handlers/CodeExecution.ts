@@ -14,10 +14,8 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 
     if (languageID === 1) {
         tempFilePathCode = path.join(__dirname, 'Program.py');
-    } else if (languageID === 2) {
-        tempFilePathCode = path.join(__dirname, 'Program.java');
-        objectCodePath = path.join(__dirname, 'Program.class');
-    } else if (languageID === 3) {
+    } 
+     else if (languageID === 2) {
         tempFilePathCode = path.join(__dirname, 'Program.cpp');
         objectCodePath = path.join(__dirname, 'Program');
     }
@@ -35,10 +33,8 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 
         if (languageID === 1) {
             Process = spawn("python3", [tempFilePathCode], { stdio: ["pipe", "pipe", "pipe"] });
-        } else if (languageID === 2) {
-            execSync(`javac ${tempFilePathCode}`);
-            Process = spawn('java', ['Program'], { stdio: ['pipe', 'pipe', 'pipe'] });
-        } else if (languageID === 3) {
+        } 
+         else if (languageID === 2) {
             execSync(`g++ -o ${objectCodePath} ${tempFilePathCode}`);
             Process = spawn(objectCodePath, [], { stdio: ['pipe', 'pipe', 'pipe'] });
         }
@@ -51,12 +47,11 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
                 if (Process) {
                     Process.kill('SIGTERM');
                     result.stderr = 'Time limit exceeded';
-                    result.stdout="";
+                    result.stdout = "";
                     result.status = 'timeout';
 
                     Process.stdout.destroy();
                     Process.stderr.destroy();
-
                 }
             }, timeout);
 
@@ -69,19 +64,20 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
             });
 
             await new Promise<void>((resolve, reject) => {
-                if(Process){
-                Process.on("close", (code: number) => {
-                    clearTimeout(timer); 
-                    result.status = code === 0 ? "completed" : "failed";
-                    resolve();
-                });
+                if (Process) {
+                    Process.on("close", (code: number) => {
+                        clearTimeout(timer);
+                        result.status = code === 0 ? "completed" : "failed";
+                        resolve();
+                    });
 
-                Process.on('error', (err: Error) => {
-                    clearTimeout(timer);
-                    result.stderr += err.message;
-                    result.status = 'failed';
-                    reject(err);
-                });}
+                    Process.on('error', (err: Error) => {
+                        clearTimeout(timer);
+                        result.stderr += err.message;
+                        result.status = 'failed';
+                        reject(err);
+                    });
+                }
             });
         } else {
             result.status = 'failed';
@@ -92,6 +88,7 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
         result.status = "failed";
     } finally {
         try {
+
             fs.unlinkSync(tempFilePathCode);
             if (objectCodePath && fs.existsSync(objectCodePath)) {
                 fs.unlinkSync(objectCodePath);
@@ -103,6 +100,7 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 
     return result;
 };
+
 
 
 // const pythonCode = `
@@ -136,7 +134,7 @@ export const execCode = async (languageID: number, sourceCode: string, stdin: st
 // }
 // `;
 
-// const stdin = 'Kaizoku ou ni orewa naru"';
+// const stdin = 'Kaizoku ou ni naru no otoka da"';
 
 // execCode(1, pythonCode, stdin,5000).then((result) => {
 //     console.log('Python result:', result);

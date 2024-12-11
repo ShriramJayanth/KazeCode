@@ -53,10 +53,6 @@ const execCode = (languageID, sourceCode, stdin, timeout) => __awaiter(void 0, v
         tempFilePathCode = path.join(__dirname, 'Program.py');
     }
     else if (languageID === 2) {
-        tempFilePathCode = path.join(__dirname, 'Program.java');
-        objectCodePath = path.join(__dirname, 'Program.class');
-    }
-    else if (languageID === 3) {
         tempFilePathCode = path.join(__dirname, 'Program.cpp');
         objectCodePath = path.join(__dirname, 'Program');
     }
@@ -72,10 +68,6 @@ const execCode = (languageID, sourceCode, stdin, timeout) => __awaiter(void 0, v
             Process = (0, child_process_1.spawn)("python3", [tempFilePathCode], { stdio: ["pipe", "pipe", "pipe"] });
         }
         else if (languageID === 2) {
-            (0, child_process_1.execSync)(`javac ${tempFilePathCode}`);
-            Process = (0, child_process_1.spawn)('java', ['Program'], { stdio: ['pipe', 'pipe', 'pipe'] });
-        }
-        else if (languageID === 3) {
             (0, child_process_1.execSync)(`g++ -o ${objectCodePath} ${tempFilePathCode}`);
             Process = (0, child_process_1.spawn)(objectCodePath, [], { stdio: ['pipe', 'pipe', 'pipe'] });
         }
@@ -163,7 +155,7 @@ exports.execCode = execCode;
 //     return 0;
 // }
 // `;
-// const stdin = 'Kaizoku ou ni orewa naru"';
+// const stdin = 'Kaizoku ou ni naru no otoka da"';
 // execCode(1, pythonCode, stdin,5000).then((result) => {
 //     console.log('Python result:', result);
 // });
