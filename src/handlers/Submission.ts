@@ -4,13 +4,14 @@ import { PrismaClient } from "@prisma/client";
 const prisma=new PrismaClient();
 
 export const makeSubmissions=async(req:Request,res:Response)=>{
+
     const { languageID, sourceCode, stdin, timeout } = req.body;
 
     try {
       const job = await prisma.executionQueue.create({
         data: {
           languageID,
-          sourceCode:Buffer.from(sourceCode, 'base64').toString('utf-8'),
+          sourceCode,
           stdin,
           timeout,
         },
@@ -22,8 +23,8 @@ export const makeSubmissions=async(req:Request,res:Response)=>{
 }
 
 export const getSubmission=async(req:Request,res:Response)=>{
-        const  id  = req.body.id;
-
+        const  {id}  = req.params;
+        console.log(id);
         try {
           const job = await prisma.executionQueue.findUnique({ where: { id:id } });
       

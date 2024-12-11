@@ -7,5 +7,5 @@ const express_1 = __importDefault(require("express"));
 const Submission_1 = require("../handlers/Submission");
 const router = express_1.default.Router();
 router.post("/submitCode", Submission_1.makeSubmissions);
-router.post("/getSubmission", Submission_1.getSubmission);
+router.get("/getSubmission/:id", Submission_1.getSubmission);
 exports.default = router;

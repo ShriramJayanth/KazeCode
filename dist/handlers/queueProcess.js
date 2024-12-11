@@ -13,7 +13,6 @@ const client_1 = require("@prisma/client");
 const CodeExecution_1 = require("./CodeExecution");
 const prisma = new client_1.PrismaClient();
 const processQueue = () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log("bam");
     while (true) {
         console.log('Checking for jobs to process...');
         const jobs = yield prisma.executionQueue.findMany({

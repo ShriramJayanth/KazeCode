@@ -18,7 +18,7 @@ const makeSubmissions = (req, res) => __awaiter(void 0, void 0, void 0, function
         const job = yield prisma.executionQueue.create({
             data: {
                 languageID,
-                sourceCode: Buffer.from(sourceCode, 'base64').toString('utf-8'),
+                sourceCode,
                 stdin,
                 timeout,
             },
@@ -31,7 +31,8 @@ const makeSubmissions = (req, res) => __awaiter(void 0, void 0, void 0, function
 });
 exports.makeSubmissions = makeSubmissions;
 const getSubmission = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const id = req.body.id;
+    const { id } = req.params;
+    console.log(id);
     try {
         const job = yield prisma.executionQueue.findUnique({ where: { id: id } });
         if (!job) {
