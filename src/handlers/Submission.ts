@@ -1,11 +1,18 @@
 import express,{ Express,Request,Response } from "express";
 import { PrismaClient } from "@prisma/client";
+import sanitizeCode from "./CodeSanitize";
 
 const prisma=new PrismaClient();
 
 export const makeSubmissions=async(req:Request,res:Response)=>{
 
     const { languageID, sourceCode, stdin, timeout } = req.body;
+
+    let checkCode:string=sanitizeCode(sourceCode);
+
+    if(checkCode!=sourceCode){
+      res.status(500).json({error:"forbidden code",details:checkCode});
+    }
 
     try {
       const job = await prisma.executionQueue.create({
@@ -41,7 +48,7 @@ export const getSubmission=async(req:Request,res:Response)=>{
           } else if (job.status === 'failed') {
             return res.status(200).json({
               status: job.status,
-              stderr: job.stderr,
+              stderr: "there is an error with the program. please debug it and submit",
             });
           } else {
             return res.status(200).json({ status: job.status });

@@ -48,7 +48,7 @@ const getSubmission = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         else if (job.status === 'failed') {
             return res.status(200).json({
                 status: job.status,
-                stderr: job.stderr,
+                stderr: "there is an error with the program. please debug it and submit",
             });
         }
         else {
